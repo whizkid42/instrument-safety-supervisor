@@ -1,0 +1,10 @@
+# Build outputs
+*.out
+*.exe
+
+# Object files
+*.o
+
+# Temporary files
+*~
+*.swp
