@@ -92,15 +92,16 @@ struct InstrumentState {
     SensorStatus status;
 };
 ---
+```cpp
  ### 🎯 MotionCommand
 
 Represents intent, not execution.
-
+```cpp
 struct MotionCommand {
     double targetPosition; // mm
     double maxVelocity;    // mm/s
 };
-
+```cpp
 
 This allows the supervisor to:
 
