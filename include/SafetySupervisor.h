@@ -13,6 +13,6 @@ public:
     SafetyDecision evaluate(const MotionCommand& command, const InstrumentState& state, MotionCommand& safeCommandOut) const;
 
 private:
-    SafetyLimits limits_;
+    SafetyLimits limits;
 };  
 #endif 
