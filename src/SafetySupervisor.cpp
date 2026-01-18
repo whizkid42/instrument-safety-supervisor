@@ -5,10 +5,18 @@ SafetySupervisor::SafetySupervisor(const SafetyLimits& limits)
 
 SafetyDecision SafetySupervisor::evaluate(const MotionCommand& command, const InstrumentState& state, MotionCommand& safeCommandOut) 
     const {
-        if (state.status == SensorStatus::OK && command.targetPosition >= limits.minPosition && command.targetPosition <= limits.maxPosition && 
-            command.maxVelocity <= limits.maxVelocity) {
-            safeCommandOut = command;
-            return SafetyDecision::ALLOW;
+        if (state.status != SensorStatus::OK) {
+            return SafetyDecision::REJECT;
         }
-        return SafetyDecision::REJECT;
+        if (command.targetPosition < limits.minPosition || command.targetPosition > limits.maxPosition) {
+            return SafetyDecision::REJECT;
+        }
+
+        safeCommandOut = command;
+
+        if (command.maxVelocity > limits.maxVelocity) {
+            safeCommandOut.maxVelocity = limits.maxVelocity;
+            return SafetyDecision::CLAMP;
+        }
+        return SafetyDecision::ALLOW;
 }

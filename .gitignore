@@ -1,4 +1,5 @@
 # Build outputs
+test_supervisor
 *.out
 *.exe
 
