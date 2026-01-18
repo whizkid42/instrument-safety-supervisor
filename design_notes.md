@@ -91,9 +91,9 @@ struct InstrumentState {
     double velocity;    // mm/s
     SensorStatus status;
 };
----
-```cpp
- ### 🎯 MotionCommand
+```
+
+### 🎯 MotionCommand
 
 Represents intent, not execution.
 ```cpp
@@ -101,47 +101,43 @@ struct MotionCommand {
     double targetPosition; // mm
     double maxVelocity;    // mm/s
 };
-```cpp
+```
 
 This allows the supervisor to:
-
-modify commands (clamp)
-
-reject commands
-
-pass through unchanged
+ - modify commands (clamp)
+ - reject commands
+ - pass through unchanged
 
 ---
 ### 🚧 SafetyLimits
 
 Defines hard physical constraints of the system.
-
+```cpp
 struct SafetyLimits {
     double minPosition;  // mm
     double maxPosition;  // mm
     double maxVelocity;  // mm/s
 };
-
+```
 Design rationale:
+- Centralized limits prevent inconsistent enforcement
+- Limits are owned by the supervisor
+- Limits are immutable during evaluation
 
-Centralized limits prevent inconsistent enforcement
-
-Limits are owned by the supervisor
-
-Limits are immutable during evaluation
-
-## Safety Decisions:
+## ⚖️Safety Decisions:
 Decision meanings
 Decision	Meaning
 Allow	Command is safe and unmodified
 Clamp	Command modified to safe limits
 Reject	Command is unsafe and blocked
 
-## Supervisor logic:
+## 🧠 Supervisor logic:
 1. Sensor Health Check
 2. Workspace Bound Check
 3. Velocity Limit Check
 4. Allow Safe Command
+ ### 📊 Decision Flow Diagram
+   ```cpp
             ┌──────────────┐
             │ Sensor OK ?  │
             └──────┬───────┘
@@ -171,4 +167,4 @@ Reject	Command is unsafe and blocked
                    │
                    ▼
                 ALLOW ✅
-
+```
