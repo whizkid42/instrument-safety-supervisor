@@ -1,18 +1,5 @@
 # 🛡️ Surgical Instrument Safety Supervisor — Design Notes
 
-## 📌 Purpose of This Document
-This document explains the **design rationale, safety criteria, and decision logic**
-behind the *Surgical Instrument Safety Supervisor*.
-
-The intent is to clearly answer:
-- **What safety problems are being solved**
-- **How safety is enforced**
-- **Why specific design decisions were made**
-- **How unsafe motion is prevented under all conditions**
-
-This mirrors the level of reasoning expected in **medical and surgical robotics software**.
-
----
 
 ## 🧠 System Intent (High-Level)
 
@@ -25,6 +12,7 @@ Every command must first pass through a **safety supervisor** that evaluates:
 
 The Safety Supervisor acts as a **hard safety gate** between *intent* and *motion*.
 
+```cpp
 Motion Command
     |
     v
@@ -34,8 +22,7 @@ Motion Command
     |
     v
 Actuator Interface
-
-
+```
 Unsafe motion is **blocked deterministically**.
 
 ---
