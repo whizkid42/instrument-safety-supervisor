@@ -139,27 +139,27 @@ Reject	Command is unsafe and blocked
  ### 📊 Decision Flow Diagram
    ```cpp
             ┌──────────────┐
-            │ Sensor OK ?  │
-            └──────┬───────┘
-                   │ NO
-                   ▼
-                REJECT ❌
-                   │
-                  STOP
-                   │
-                   ▼
-            ┌──────────────┐
-            │ Position OK? │
-            └──────┬───────┘
-                   │ NO
-                   ▼
-                REJECT ❌
-                   │
-                  STOP
-                   │
-                   ▼
-            ┌──────────────┐
-            │ Velocity OK? │
+            │ Sensor OK ?  │ ----
+            └──────┬───────┘    |
+                   │ NO         |
+                   ▼            |
+                REJECT ❌       |   OK
+                   │            |
+                  STOP          |
+                   │            |
+                   ▼            |
+            ┌──────────────┐    |
+            │ Position OK? │ <--|
+            └──────┬───────┘ <--|
+                   │ NO         |
+                   ▼            |
+                REJECT ❌       |   OK
+                   │            |
+                  STOP          |
+                   │            |
+                   ▼            |
+            ┌──────────────┐    |
+            │ Velocity OK? │<---|
             └──────┬───────┘
                    │ NO
                    ▼
@@ -167,4 +167,6 @@ Reject	Command is unsafe and blocked
                    │
                    ▼
                 ALLOW ✅
+
+
 ```
