@@ -150,13 +150,10 @@ and fail-safe philosophy, see:
 
 This document explains:
 
-why certain violations are clamped vs rejected
-
-how sensor health gates all motion
-
-how failure injection is used for verification
-
-how unsafe motion is made provably impossible
+- why certain violations are clamped vs rejected
+- how sensor health gates all motion
+- how failure injection is used for verification
+- how unsafe motion is made provably impossible
 
 ---
 
